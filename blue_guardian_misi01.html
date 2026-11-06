@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#06385c">
+<title>Blue Guardian — Misi 01: The Lost Reef</title>
+<style>
+:root{--navy:#003366;--blue:#1e90ff;--aqua:#7cd4fd;--yellow:#ffeb3b;--ink:#092d49;--panel:rgba(4,36,62,.88);--white:#fff;--green:#48d6a0;--coral:#ff8b75}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Arial,Helvetica,sans-serif;color:var(--white);background:#052e50}button{font:inherit;cursor:pointer;border:0}button:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
+body{overflow-x:hidden;background:linear-gradient(180deg,#0a79ad 0%,#07517d 38%,#032d50 100%)}
+#app{min-height:100vh;position:relative;isolation:isolate}.ocean{position:fixed;inset:0;z-index:-2;overflow:hidden;background:radial-gradient(ellipse at 50% -10%,#b6f5ff 0%,#42bce4 18%,#0875a6 52%,#032849 100%)}
+.sunbeam{position:absolute;top:-15%;left:24%;width:52%;height:85%;opacity:.17;background:linear-gradient(100deg,transparent 0 25%,#e6fcff 35%,transparent 47% 100%);filter:blur(18px);transform:rotate(8deg)}
+.bubble{position:absolute;bottom:-60px;border:2px solid #d8f8ff88;border-radius:50%;animation:rise linear infinite}.bubble:nth-child(2){left:9%;width:16px;height:16px;animation-duration:12s}.bubble:nth-child(3){left:25%;width:9px;height:9px;animation-duration:9s;animation-delay:2s}.bubble:nth-child(4){left:74%;width:20px;height:20px;animation-duration:14s;animation-delay:1s}.bubble:nth-child(5){left:91%;width:11px;height:11px;animation-duration:10s;animation-delay:4s}
+@keyframes rise{to{transform:translateY(-115vh) translateX(30px);opacity:0}}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px clamp(14px,3vw,36px);background:#032d50c9;border-bottom:1px solid #bceeff33;position:relative;z-index:5;backdrop-filter:blur(12px)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.08em}.brand-mark{width:38px;height:38px;border-radius:13px;background:linear-gradient(145deg,#8cecff,#1e90ff);display:grid;place-items:center;color:#003366;font-size:22px;box-shadow:0 5px 18px #001b3580}
+.topstats{display:flex;align-items:center;gap:9px}.pill{padding:9px 13px;border:1px solid #c8f2ff55;background:#ffffff13;border-radius:999px;font-size:13px;font-weight:800;white-space:nowrap}.pill b{color:var(--yellow)}
+main{width:min(1180px,94vw);margin:0 auto;padding:24px 0 44px}.screen{display:none;animation:enter .35s ease}.screen.active{display:block}@keyframes enter{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:center;min-height:65vh}.eyebrow{font-size:12px;font-weight:900;letter-spacing:.2em;color:#b8efff;text-transform:uppercase}.hero h1{font-size:clamp(38px,6vw,76px);line-height:.96;margin:12px 0;color:white;text-shadow:0 5px 20px #00385b80}.hero h1 span{color:var(--yellow)}.lead{font-size:clamp(16px,2vw,20px);line-height:1.55;color:#e3f8ff;max-width:580px}
+.btn{padding:14px 20px;border-radius:15px;font-weight:900;transition:.18s;min-height:48px}.btn:hover{transform:translateY(-2px);filter:brightness(1.08)}.primary{background:linear-gradient(135deg,#ffef63,#ffc928);color:#173957;box-shadow:0 8px 22px #001f3c66}.secondary{background:#ffffff19;color:white;border:1px solid #d5f5ff66}.small{padding:10px 14px;min-height:40px;font-size:13px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.hero-art{position:relative;min-height:360px;display:grid;place-items:center}.reef-orb{width:min(390px,80vw);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 40% 30%,#a5f4ff,#21a8d0 42%,#07517d 70%);box-shadow:inset -22px -28px 55px #003b66aa,0 25px 60px #00254277;border:7px solid #b9f5ff66;display:grid;place-items:center;font-size:clamp(120px,20vw,210px);position:relative}.reef-orb:after{content:"";position:absolute;inset:9%;border:2px solid #e2fbff66;border-radius:50%;animation:spin 24s linear infinite}.reef-orb span{filter:drop-shadow(0 15px 10px #003b4e88);animation:float 4s ease-in-out infinite}@keyframes spin{to{transform:rotate(360deg)}}@keyframes float{50%{transform:translateY(-13px)}}
+.card{background:var(--panel);border:1px solid #bdeeff44;border-radius:22px;padding:clamp(16px,2.5vw,26px);box-shadow:0 18px 45px #001b3580;backdrop-filter:blur(12px)}
+.section-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:18px}.section-head h2{margin:5px 0;font-size:clamp(26px,4vw,42px)}.muted{color:#c8eaf6;line-height:1.5}.mission-layout{display:grid;grid-template-columns:1.45fr .75fr;gap:18px}.scene{min-height:420px;position:relative;overflow:hidden;border-radius:20px;border:1px solid #bdeeff55;background:linear-gradient(#45c5e8 0%,#087ba8 45%,#03456f 100%);box-shadow:inset 0 -90px 100px #002f55aa}
+.scene:before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,#fff8 0%,transparent 38%);pointer-events:none}
+.seafloor{position:absolute;bottom:-12%;left:-5%;width:110%;height:38%;background:linear-gradient(170deg,#c49b62,#74533d 70%);border-radius:50% 50% 0 0;box-shadow:inset 0 14px 22px #f5d49b55}
+.decor{position:absolute;font-size:clamp(34px,5vw,64px);filter:drop-shadow(0 8px 5px #00334c66);user-select:none}
+.hotspot{position:absolute;width:62px;height:62px;border-radius:50%;background:#fff2;border:2px solid #e8fcff;display:grid;place-items:center;font-size:34px;box-shadow:0 0 0 7px #d8f8ff22;transition:.2s}
+.hotspot:hover,.hotspot.seen{background:#ffeb3b44;transform:scale(1.12);box-shadow:0 0 0 10px #ffeb3b25}
+.hotspot:after{content:"";position:absolute;inset:-8px;border:2px solid #ffeb3b;border-radius:50%;animation:pulse 1.8s infinite}
+@keyframes pulse{50%{transform:scale(1.18);opacity:.25}}
+.scene-label{position:absolute;left:16px;top:15px;background:#032d50bb;padding:9px 12px;border-radius:10px;font-size:12px;font-weight:800;letter-spacing:.08em}
+.scene-tip{position:absolute;left:16px;right:16px;bottom:16px;text-align:center;background:#032d50c9;padding:10px;border-radius:12px;font-size:13px}
+.side-stack{display:flex;flex-direction:column;gap:14px}.nara{display:flex;gap:12px;align-items:flex-start}.nara-avatar{width:62px;height:62px;flex:0 0 62px;border-radius:18px;background:linear-gradient(145deg,#b7f3ff,#1e90ff);display:grid;place-items:center;font-size:38px}.nara h3{margin:2px 0 6px}.nara p{margin:0;color:#d7f3fc;line-height:1.45;font-size:14px}.info-box{background:#ffffff12;border:1px solid #d6f5ff33;border-radius:15px;padding:14px}.info-box h3{margin:0 0 7px;font-size:16px}.info-box p{margin:0;color:#d4eff8;font-size:13px;line-height:1.5}.progress{height:9px;background:#ffffff24;border-radius:20px;overflow:hidden;margin-top:9px}.progress span{display:block;height:100%;background:linear-gradient(90deg,#7cd4fd,#ffeb3b);width:0;transition:.3s}
+.object-card{display:none;margin-top:12px}.object-card.show{display:block;animation:enter .2s}.object-meta{display:flex;align-items:center;gap:10px}.object-emoji{font-size:36px}.tag{font-size:11px;font-weight:900;letter-spacing:.08em;padding:6px 9px;border-radius:999px}.biotic{background:#1e9f7b;color:white}.abiotic{background:#257fc4;color:white}
+.challenge{margin-top:18px}.drop-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}.dropzone{border:2px dashed #b9edff88;border-radius:17px;min-height:130px;padding:13px;background:#ffffff0b}.dropzone h3{margin:0 0 10px;font-size:16px}.dropzone.over{border-color:var(--yellow);background:#ffeb3b16}.items{display:flex;flex-wrap:wrap;gap:8px}.drag-item{padding:11px 13px;border-radius:12px;background:#e7f8ff;color:#06385c;font-weight:800;touch-action:manipulation;user-select:none;border:2px solid transparent}.drag-item.selected{border-color:#ffb800;background:#fff3b0}.drag-item.correct{background:#baf5dc;color:#07543c}.drag-item.wrong{background:#ffd2c9;color:#7a281d}.feedback{padding:13px 15px;border-radius:14px;background:#ffffff13;border:1px solid #d5f5ff44;line-height:1.5;margin-top:12px;min-height:48px}.feedback.good{border-color:#48d6a0;background:#48d6a019}.feedback.bad{border-color:#ff9b83;background:#ff9b8319}
+.quiz-options{display:grid;gap:9px;margin-top:12px}.quiz-option{text-align:left;padding:14px;border-radius:13px;background:#ffffff13;color:white;border:1px solid #d5f5ff44;font-weight:700}.quiz-option:hover{background:#ffffff25}.quiz-option.correct{background:#16875e;border-color:#75f0bf}.quiz-option.wrong{background:#9c493c;border-color:#ffad9c}
+footer{width:min(1180px,94vw);margin:0 auto 20px;color:#c4e8f5;font-size:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.modal-backdrop{position:fixed;inset:0;background:#001a2ddd;display:none;place-items:center;z-index:20;padding:16px}.modal-backdrop.open{display:grid}.modal{width:min(560px,100%);max-height:88vh;overflow:auto;background:#07385b;border:1px solid #bdeeff66;border-radius:22px;padding:24px;box-shadow:0 25px 80px #0009}.modal h2{margin-top:0}.modal p,.modal li{line-height:1.55;color:#d9f3fc}.close{float:right;background:#ffffff18;color:white;border-radius:10px;padding:8px 12px}
+.name-input{width:100%;padding:15px;border-radius:12px;border:2px solid #9bdff5;background:#f5fcff;color:#07385b;font-size:18px;margin:12px 0}
+@media(max-width:820px){.hero{grid-template-columns:1fr;min-height:auto}.hero-art{min-height:260px}.reef-orb{width:245px}.mission-layout{grid-template-columns:1fr}.scene{min-height:390px}.side-stack{display:grid;grid-template-columns:1fr 1fr}.nara{grid-column:1/-1}}
+@media(max-width:520px){.topbar{padding:10px}.brand{font-size:12px}.brand-mark{width:32px;height:32px}.pill{font-size:11px;padding:8px}.topstats{gap:5px}.side-stack{display:flex}.scene{min-height:350px}.hotspot{width:52px;height:52px;font-size:28px}.drop-grid{grid-template-columns:1fr}.hero h1{font-size:43px}}
+@media(hover:none){.hotspot:hover{transform:none}}
+</style>
+</head>
+<body>
+<div id="app">
+<div class="ocean"><div class="sunbeam"></div><i class="bubble"></i><i class="bubble"></i><i class="bubble"></i><i class="bubble"></i></div>
+<header class="topbar">
+ <div class="brand"><div class="brand-mark">🌊</div><span>BLUE GUARDIAN</span></div>
+ <div class="topstats"><div class="pill">PENJELAJAH: <b id="playerLabel">TAMU</b></div><div class="pill">⭐ XP <b id="xp">0</b></div><button class="btn secondary small" id="soundToggle" title="Aktif/nonaktifkan suara">🔊 Suara</button></div>
+</header>
+<main>
+<section class="screen active" id="home">
+ <div class="hero">
+  <div><div class="eyebrow">PETUALANGAN SAINS • IPA SMP</div><h1>MISSION:<br><span>BLUE</span><br>GUARDIAN</h1>
+   <p class="lead">Laut kita membutuhkan penjaga! Jelajahi terumbu karang, temukan rahasia ekosistem, dan buktikan bahwa kamu bisa menjadi pelindung laut.</p>
+   <div class="actions"><button class="btn primary" id="startBtn">MULAI PETUALANGAN →</button><button class="btn secondary" id="guideBtn">❔ Petunjuk</button></div>
+   <p class="muted" style="font-size:13px;margin-top:20px">MISI 01 · THE LOST REEF · Estimasi 15–20 menit</p>
+  </div>
+  <div class="hero-art"><div class="reef-orb"><span>🐢</span></div></div>
+ </div>
+</section>
+<section class="screen" id="player">
+ <div class="card" style="max-width:620px;margin:7vh auto">
+  <div class="eyebrow">IDENTITAS PENJELAJAH</div><h2>Siapa nama penjaga laut hari ini?</h2><p class="muted">Masukkan nama atau nama panggilanmu. Data disimpan di perangkat ini.</p>
+  <input class="name-input" id="nameInput" maxlength="24" placeholder="Nama penjelajah..." autocomplete="off">
+  <button class="btn primary" id="confirmName">LANJUTKAN EKSPEDISI →</button>
+ </div>
+</section>
+<section class="screen" id="mission">
+ <div class="section-head"><div><div class="eyebrow">MISI 01 / 05 · EKSPLORASI</div><h2>THE LOST REEF</h2><div class="muted">Temukan komponen penyusun ekosistem bawah laut.</div></div><div class="pill">PROGRES <b id="discoverCount">0/6</b></div></div>
+ <div class="mission-layout">
+  <div>
+   <div class="scene" id="reefScene">
+    <div class="scene-label">📍 TERUMBU KARANG MALUKU</div><div class="seafloor"></div>
+    <div class="decor" style="left:7%;bottom:12%">🪸</div><div class="decor" style="left:34%;bottom:11%">🌿</div><div class="decor" style="right:8%;bottom:14%">🪸</div>
+    <div class="decor" style="left:40%;top:24%;font-size:38px">🐠</div><div class="decor" style="right:20%;top:43%;font-size:42px">🐟</div>
+    <button class="hotspot" data-object="fish" aria-label="Temukan ikan" style="left:17%;top:35%">🐠</button>
+    <button class="hotspot" data-object="coral" aria-label="Temukan terumbu karang" style="left:70%;top:65%">🪸</button>
+    <button class="hotspot" data-object="water" aria-label="Temukan air laut" style="left:47%;top:56%">💧</button>
+    <button class="hotspot" data-object="sun" aria-label="Temukan cahaya matahari" style="left:79%;top:16%">☀️</button>
+    <button class="hotspot" data-object="sand" aria-label="Temukan pasir" style="left:27%;top:76%">🏖️</button>
+    <button class="hotspot" data-object="plankton" aria-label="Temukan fitoplankton" style="left:51%;top:78%">🦠</button>
+    <div class="scene-tip">👆 Sentuh objek bercahaya untuk menemukan petunjuk!</div>
+   </div>
+   <div class="card object-card" id="objectCard">
+    <div class="object-meta"><div class="object-emoji" id="objectEmoji">🐠</div><div><div class="eyebrow" id="objectType">KOMPONEN BIOTIK</div><h3 id="objectName" style="margin:3px 0">Ikan</h3></div></div>
+    <p class="muted" id="objectDesc" style="margin-bottom:12px"></p><button class="btn secondary small" id="speakObject">🔊 Dengarkan penjelasan</button>
+   </div>
+  </div>
+  <aside class="side-stack">
+   <div class="card nara"><div class="nara-avatar">🧑🏻‍🔬</div><div><h3>NARA <span style="color:var(--aqua);font-size:11px">PANDUAN MISI</span></h3><p id="naraText">Halo, Penjaga! Aku NARA. Sentuh objek yang bercahaya untuk mengenali komponen ekosistem. Amati dengan teliti, ya!</p><button class="btn secondary small" id="speakNara" style="margin-top:10px">🔊 Dengarkan NARA</button></div></div>
+   <div class="info-box"><h3>🎯 Tujuan Misi</h3><p>Mengidentifikasi komponen biotik dan abiotik pada ekosistem laut.</p></div>
+   <div class="info-box"><h3>🔎 Temuanmu</h3><p id="foundText">Belum ada objek ditemukan. Jelajahi kawasan terumbu karang!</p><div class="progress"><span id="discoverBar"></span></div></div>
+   <div class="info-box"><h3>💡 Petunjuk</h3><p>Biotik adalah komponen hidup. Abiotik adalah komponen tak hidup yang mendukung kehidupan.</p></div>
+  </aside>
+ </div>
+ <div class="card challenge">
+  <div class="section-head"><div><div class="eyebrow">TANTANGAN 01</div><h2>Kelompokkan Temuanmu</h2><p class="muted">Pindahkan kartu ke kelompok yang tepat. Pada PID, sentuh kartu lalu sentuh kotak tujuan.</p></div><div class="pill">+10 XP / BENAR</div></div>
+  <div class="items" id="sourceItems">
+   <button class="drag-item" draggable="true" data-kind="biotic" data-id="fish">🐠 Ikan</button>
+   <button class="drag-item" draggable="true" data-kind="biotic" data-id="coral">🪸 Terumbu karang</button>
+   <button class="drag-item" draggable="true" data-kind="biotic" data-id="plankton">🦠 Fitoplankton</button>
+   <button class="drag-item" draggable="true" data-kind="abiotic" data-id="water">💧 Air laut</button>
+   <button class="drag-item" draggable="true" data-kind="abiotic" data-id="sun">☀️ Cahaya matahari</button>
+   <button class="drag-item" draggable="true" data-kind="abiotic" data-id="sand">🏖️ Pasir</button>
+  </div>
+  <div class="drop-grid">
+   <div class="dropzone" data-target="biotic"><h3>🌱 Komponen Biotik</h3><div class="items"></div></div>
+   <div class="dropzone" data-target="abiotic"><h3>💧 Komponen Abiotik</h3><div class="items"></div></div>
+  </div>
+  <div class="feedback" id="classFeedback" aria-live="polite">Ayo kelompokkan keenam objek. Pilih kartu, lalu pilih kotak tujuan.</div>
+  <div class="actions"><button class="btn secondary small" id="resetClassify">↻ Ulangi pengelompokan</button><button class="btn primary" id="finishMission" disabled>Selesaikan Misi →</button></div>
+ </div>
+</section>
+<section class="screen" id="quiz">
+ <div class="card" style="max-width:780px;margin:4vh auto">
+  <div class="eyebrow">PEMERIKSAAN PEMAHAMAN</div><h2>Apakah kamu siap menjadi penjaga?</h2><p class="muted">Jawab dua pertanyaan singkat berdasarkan penjelajahanmu.</p>
+  <div id="quizArea"></div><div class="feedback" id="quizFeedback" aria-live="polite">Pilih jawaban yang menurutmu paling tepat.</div>
+  <div class="actions"><button class="btn primary" id="nextQuiz" disabled>Lanjutkan →</button></div>
+ </div>
+</section>
+<section class="screen" id="complete">
+ <div class="card" style="max-width:760px;margin:4vh auto;text-align:center">
+  <div style="font-size:76px">🏆</div><div class="eyebrow">MISSION COMPLETED</div><h2 style="font-size:clamp(32px,5vw,54px);margin:8px">THE LOST REEF</h2><h3 style="color:var(--yellow)">Kamu Penjaga Ekosistem Laut!</h3>
+  <p class="muted">Hebat, <b id="completeName">Penjaga</b>! Kamu berhasil mengenali komponen biotik dan abiotik serta memahami perannya dalam ekosistem laut.</p>
+  <div class="drop-grid"><div class="info-box"><div class="eyebrow">TOTAL XP</div><h2 id="finalXP" style="color:var(--yellow)">0</h2></div><div class="info-box"><div class="eyebrow">OBJEK DITEMUKAN</div><h2>6 / 6</h2></div></div>
+  <div class="info-box" style="text-align:left"><h3>🧠 Refleksi Penjelajah</h3><p>Mengapa cahaya matahari, air, dan pasir tetap penting bagi kehidupan organisme laut meskipun bukan makhluk hidup?</p></div>
+  <div class="actions" style="justify-content:center"><button class="btn primary" id="replayBtn">↻ Mainkan Lagi</button><button class="btn secondary" id="homeBtn">Kembali ke Beranda</button><button class="btn secondary" id="printBtn">Cetak Ringkasan</button></div>
+ </div>
+</section>
+</main>
+<footer><span>BLUE GUARDIAN · MPI IPA SMP · PROTOTIPE v0.1</span><span>Dirancang untuk PID layar sentuh dan laptop</span></footer>
+<div class="modal-backdrop" id="guideModal"><div class="modal"><button class="close" id="closeGuide">Tutup ✕</button><div class="eyebrow">PANDUAN PENJELAJAH</div><h2>Bagaimana cara bermain?</h2><ol><li>Masukkan nama penjelajah.</li><li>Sentuh enam objek bercahaya di dunia bawah laut.</li><li>Baca atau dengarkan penjelasan NARA.</li><li>Kelompokkan objek ke dalam komponen biotik dan abiotik.</li><li>Jawab pertanyaan refleksi dan selesaikan misi.</li></ol><p>Di PID: sentuh kartu, lalu sentuh kotak kategori. Di laptop: gunakan mouse atau drag-and-drop.</p><button class="btn primary" id="guideOk">Saya mengerti</button></div></div>
+</div>
+<script>
+(()=> {
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+let player='Penjaga',xp=0,discovered=new Set(),selected=null,classified=new Map(),soundOn=true,quizIndex=0,quizScore=0;
+const objects={
+ fish:{name:'Ikan',emoji:'🐠',type:'BIOTIK',kind:'biotic',desc:'Ikan merupakan makhluk hidup. Ikan membutuhkan makanan, air, dan oksigen untuk bertahan hidup.'},
+ coral:{name:'Terumbu karang',emoji:'🪸',type:'BIOTIK',kind:'biotic',desc:'Terumbu karang dibentuk oleh hewan karang yang hidup berkoloni. Ekosistem ini menjadi tempat hidup dan berlindung berbagai organisme laut.'},
+ plankton:{name:'Fitoplankton',emoji:'🦠',type:'BIOTIK',kind:'biotic',desc:'Fitoplankton adalah organisme mikroskopis yang mampu berfotosintesis dan menjadi produsen penting dalam ekosistem perairan.'},
+ water:{name:'Air laut',emoji:'💧',type:'ABIOTIK',kind:'abiotic',desc:'Air laut merupakan komponen tak hidup yang menjadi medium bagi organisme laut. Salinitas, suhu, dan kualitas air memengaruhi kehidupan di dalamnya.'},
+ sun:{name:'Cahaya matahari',emoji:'☀️',type:'ABIOTIK',kind:'abiotic',desc:'Cahaya matahari merupakan sumber energi bagi fotosintesis fitoplankton dan alga, yang menjadi dasar banyak rantai makanan laut.'},
+ sand:{name:'Pasir',emoji:'🏖️',type:'ABIOTIK',kind:'abiotic',desc:'Pasir merupakan komponen tak hidup yang menjadi bagian habitat pesisir dan dasar perairan bagi sejumlah organisme.'}
+};
+function show(id){$$('.screen').forEach(s=>s.classList.toggle('active',s.id===id));window.scrollTo({top:0,behavior:'smooth'})}
+function say(text){if(!soundOn||!('speechSynthesis'in window))return; speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='id-ID';u.rate=.94;u.pitch=1.04;speechSynthesis.speak(u)}
+function setXP(n){xp+=n;$('#xp').textContent=xp;localStorage.setItem('bg_xp',xp)}
+function announce(t,kind=''){const el=$('#classFeedback');el.textContent=t;el.className='feedback '+kind}
+$('#startBtn').onclick=()=>show('player');$('#guideBtn').onclick=()=>$('#guideModal').classList.add('open');$('#closeGuide').onclick=$('#guideOk').onclick=()=>$('#guideModal').classList.remove('open');
+$('#confirmName').onclick=()=>{player=$('#nameInput').value.trim()||'Penjaga';$('#playerLabel').textContent=player.toUpperCase();$('#naraText').textContent=`Selamat datang, ${player}! Aku NARA. Sentuh objek yang bercahaya untuk mengenali komponen ekosistem. Amati dengan teliti, ya!`;show('mission');say(`Halo ${player}. Selamat datang di ekspedisi Blue Guardian. Mari kita jelajahi terumbu karang.`)};
+$('#nameInput').addEventListener('keydown',e=>{if(e.key==='Enter')$('#confirmName').click()});
+$('#soundToggle').onclick=()=>{soundOn=!soundOn;$('#soundToggle').textContent=soundOn?'🔊 Suara':'🔇 Suara Mati';if(!soundOn&&'speechSynthesis'in window)speechSynthesis.cancel()};
+$('#speakNara').onclick=()=>say($('#naraText').textContent);
+function updateDiscovery(){let n=discovered.size;$('#discoverCount').textContent=n+'/6';$('#discoverBar').style.width=(n/6*100)+'%';$('#foundText').textContent=n===0?'Belum ada objek ditemukan. Jelajahi kawasan terumbu karang!':`${n} dari 6 objek berhasil ditemukan. ${n===6?'Semua objek telah ditemukan!':''}`;if(n===6){$('#naraText').textContent='Luar biasa! Semua objek sudah ditemukan. Sekarang kelompokkan setiap objek ke dalam komponen biotik atau abiotik.';}}
+$$('.hotspot').forEach(btn=>btn.onclick=()=>{const id=btn.dataset.object,o=objects[id];discovered.add(id);btn.classList.add('seen');$('#objectCard').classList.add('show');$('#objectEmoji').textContent=o.emoji;$('#objectType').textContent='KOMPONEN '+o.type;$('#objectName').textContent=o.name;$('#objectDesc').textContent=o.desc;$('#speakObject').onclick=()=>say(o.desc);updateDiscovery();say(`${o.name}. ${o.desc}`)});
+function chooseCard(card){if(card.classList.contains('correct'))return;if(selected)selected.classList.remove('selected');selected=card;card.classList.add('selected');announce(`Kartu ${card.textContent.trim()} dipilih. Sekarang sentuh kotak kategori yang tepat.`)}
+function placeCard(card,target){if(!card||card.classList.contains('correct'))return;const id=card.dataset.id,o=objects[id];if(o.kind===target){card.classList.remove('selected','wrong');card.classList.add('correct');card.draggable=false;const zone=$(`.dropzone[data-target="${target}"] .items`);zone.appendChild(card);classified.set(id,target);if(!card.dataset.rewarded){setXP(10);card.dataset.rewarded='1'}announce(`Benar! ${o.name} termasuk komponen ${target==='biotic'?'biotik':'abiotik'}. ${o.desc}`,'good');say(`Tepat! ${o.name} termasuk komponen ${target==='biotic'?'biotik':'abiotik'}.`)}else{card.classList.remove('selected');card.classList.add('wrong');announce(`Belum tepat. Ingat: biotik adalah makhluk hidup, sedangkan abiotik bukan makhluk hidup.`,'bad');say('Coba pikirkan kembali. Apakah objek ini makhluk hidup?');setTimeout(()=>card.classList.remove('wrong'),900)}if(classified.size===6){$('#finishMission').disabled=false;announce('Hebat! Semua objek sudah dikelompokkan dengan benar. Lanjutkan ke pemeriksaan pemahaman.','good');$('#naraText').textContent='Kamu berhasil mengelompokkan semua temuan! Mari kita periksa pemahamanmu sebelum misi selesai.'}}
+$$('.drag-item').forEach(card=>{card.addEventListener('click',()=>chooseCard(card));card.addEventListener('dragstart',e=>{selected=card;e.dataTransfer.setData('text/plain',card.dataset.id)})});
+$$('.dropzone').forEach(zone=>{zone.addEventListener('click',()=>{if(selected){placeCard(selected,zone.dataset.target);selected=null}});zone.addEventListener('dragover',e=>{e.preventDefault();zone.classList.add('over')});zone.addEventListener('dragleave',()=>zone.classList.remove('over'));zone.addEventListener('drop',e=>{e.preventDefault();zone.classList.remove('over');const id=e.dataTransfer.getData('text/plain');const card=$(`.drag-item[data-id="${id}"]`);placeCard(card,zone.dataset.target);selected=null})});
+$('#resetClassify').onclick=()=>{classified.clear();selected=null;$$('.drag-item').forEach(c=>{c.classList.remove('correct','wrong','selected');c.draggable=true;delete c.dataset.rewarded;$('#sourceItems').appendChild(c)});$('#finishMission').disabled=true;announce('Pengelompokan diulang. Coba lagi dengan lebih teliti.');};
+const questions=[
+ {q:'Manakah yang termasuk komponen biotik dalam ekosistem laut?',a:['Cahaya matahari','Air laut','Fitoplankton','Pasir'],correct:2,why:'Fitoplankton adalah organisme hidup yang dapat berfotosintesis, sehingga termasuk komponen biotik.'},
+ {q:'Mengapa cahaya matahari penting bagi ekosistem laut?',a:['Menjadi sumber energi fotosintesis','Menjadi tempat ikan berlindung','Mengubah pasir menjadi karang','Menghilangkan seluruh predator'],correct:0,why:'Cahaya matahari menyediakan energi untuk fotosintesis fitoplankton dan alga.'}
+];
+function renderQuiz(){const q=questions[quizIndex];$('#quizArea').innerHTML=`<div class="pill">PERTANYAAN ${quizIndex+1} / ${questions.length}</div><h3 style="font-size:22px;line-height:1.4">${q.q}</h3><div class="quiz-options">${q.a.map((a,i)=>`<button class="quiz-option" data-answer="${i}">${String.fromCharCode(65+i)}. ${a}</button>`).join('')}</div>`;$('#quizFeedback').textContent='Pilih jawaban yang menurutmu paling tepat.';$('#quizFeedback').className='feedback';$('#nextQuiz').disabled=true;$$('.quiz-option').forEach(b=>b.onclick=()=>{if($('#quizArea').dataset.answered)return;$('#quizArea').dataset.answered='1';const chosen=+b.dataset.answer,correct=chosen===q.correct;$$('.quiz-option').forEach((x,i)=>{if(i===q.correct)x.classList.add('correct');else if(i===chosen)x.classList.add('wrong');x.disabled=true});if(correct){quizScore++;setXP(15);$('#quizFeedback').textContent='Tepat! '+q.why;$('#quizFeedback').className='feedback good';say('Jawabanmu benar. '+q.why)}else{$('#quizFeedback').textContent='Belum tepat. '+q.why;$('#quizFeedback').className='feedback bad';say(q.why)}$('#nextQuiz').disabled=false;$('#nextQuiz').textContent=quizIndex===questions.length-1?'Lihat hasil misi →':'Pertanyaan berikutnya →'});}
+$('#finishMission').onclick=()=>{quizIndex=0;quizScore=0;show('quiz');renderQuiz()};
+$('#nextQuiz').onclick=()=>{if(quizIndex<questions.length-1){quizIndex++;$('#quizArea').dataset.answered='';renderQuiz()}else{setXP(20);$('#finalXP').textContent=xp;$('#completeName').textContent=player;show('complete');say(`Selamat ${player}. Kamu telah menyelesaikan misi The Lost Reef. Kamu adalah Blue Guardian!`)}};
+function resetAll(){xp=0;discovered.clear();classified.clear();quizIndex=0;quizScore=0;$('#xp').textContent='0';$('#playerLabel').textContent='TAMU';$$('.hotspot').forEach(b=>b.classList.remove('seen'));$('#objectCard').classList.remove('show');$('#finishMission').disabled=true;$('#discoverCount').textContent='0/6';$('#discoverBar').style.width='0';$('#foundText').textContent='Belum ada objek ditemukan. Jelajahi kawasan terumbu karang!';$('#resetClassify').click();show('home')}
+$('#replayBtn').onclick=()=>{resetAll();show('player')};$('#homeBtn').onclick=()=>{resetAll()};$('#printBtn').onclick=()=>window.print();
+if(!('speechSynthesis'in window)){$('#soundToggle').textContent='Audio tidak tersedia';$('#soundToggle').disabled=true}
+})();
+</script>
+</body>
+</html>
